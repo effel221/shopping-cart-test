@@ -6,6 +6,8 @@
 
 :root {
   --dark: #0f1111;
+  --ligth-gray: #ccc;
+  --orange: #ab5815;
 }
 
 body {
@@ -15,4 +17,5 @@ body {
 
 h1 {
   font-size: 2rem;
+  margin: 0 0 1.2rem;
 }

@@ -1,17 +1,21 @@
 import Main from "@/app/Components/Main";
 import prisma from "@/app/prisma";
+import Product from "@/app/Components/Product";
+import {ProductType} from "@/app/types";
+
 
 
 export default async function Home() {
-  const products = await prisma.product.findMany()
+  const products = JSON.parse(JSON.stringify(await prisma.product.findMany()))
   return (
       <Main>
           <h1>Product list</h1>
-          {products.map(({id, name, price, description})=><div key={id}>
-              <h3>{name}</h3>
-              <p>{price}</p>
-              <p>{description}</p>
-          </div>)}
+          <div className="container">
+              <div className="flex flex-col md:flex-row">{products.map((product:ProductType)=>
+                  <Product key={product.id} {...product}/>
+              )}
+              </div>
+          </div>
       </Main>
   );
 }

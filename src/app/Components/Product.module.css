@@ -1,0 +1,13 @@
+.product {
+   border: 1px solid var(--ligth-gray);
+   padding: 5px;
+   margin: 5px;
+}
+
+.product:hover {
+    border: 1px solid var(--dark);
+}
+
+.description {
+    font-size: 1rem;
+}
