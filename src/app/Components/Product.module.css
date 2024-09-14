@@ -1,6 +1,9 @@
 .product h2 {
     font-size: 1.1rem;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .productDetails {
@@ -15,8 +18,13 @@
 }
 
 .description {
+    width: 100%;
+    margin: 0 0 10px;
     font-size: 0.9rem;
     padding: 2px 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .price {
