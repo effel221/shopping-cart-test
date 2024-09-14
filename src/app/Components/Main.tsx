@@ -1,9 +1,7 @@
-
-
-export default function Main() {
+export default async function Main({children}) {
   return (
-     <main class="container mx-auto px-4">
-         <h1>TS shopping cart solution</h1>
+     <main className="container mx-auto px-4">
+         {children}
      </main>
   );
 }
