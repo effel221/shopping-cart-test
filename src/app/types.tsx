@@ -10,3 +10,8 @@ export type ProductType = {
     price: number,
     description: string
 }
+
+export type CartIconProps = {
+    classes: string,
+    strokeWidth: number
+}

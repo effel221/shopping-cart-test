@@ -1,6 +1,7 @@
+import {CartIconProps} from "@/app/types";
 
 
-export default async function CartIcon({classes, strokeWidth}) {
+export default async function CartIcon({classes, strokeWidth}: CartIconProps) {
   return (
       <svg className={classes} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth}
            strokeLinecap="round" strokeLinejoin="round">

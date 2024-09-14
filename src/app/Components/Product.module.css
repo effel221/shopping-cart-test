@@ -1,13 +1,27 @@
-.product {
-   border: 1px solid var(--ligth-gray);
-   padding: 5px;
-   margin: 5px;
+.product h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
-.product:hover {
+.productDetails {
+    width: 97%;
+    border: 1px solid var(--ligth-gray);
+    margin: 5px;
+    padding: 5px;
+}
+
+.productDetails:hover {
     border: 1px solid var(--dark);
 }
 
 .description {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    padding: 2px 3px;
+}
+
+.price {
+    color: var(--orange);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 0;
 }

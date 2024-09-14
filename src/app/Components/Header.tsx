@@ -8,7 +8,7 @@ export default function Header() {
   return (
      <header>
          <a href="/" className={styles.logo}>Logo</a>
-         <Link href="/cart" className="ml-auto mr-4 self-center">
+         <Link href="/cart" className="ml-auto mr-4 self-center" aria-label={"Go to Cart"}>
              <CartIcon strokeWidth={2} classes={"h-8 w-8 text-white"}/>
          </Link>
      </header>
