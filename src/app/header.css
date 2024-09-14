@@ -3,4 +3,5 @@ header {
   background: var(--dark);
   height: 80px;
   color: white;
+  margin: 0 0 20px;
 }
