@@ -16,6 +16,17 @@ export const updateProduct = async (cartId: string, productId: string, quantity:
     return productUpdate
 }
 
+export const deleteProduct = async (cartId, productId) => {
+    const removedProduct = await prisma.cartItem.findMany({
+        where: {
+            cartId,
+            productId
+        }
+    })
+    return removedProduct
+}
+
+
 export const addToCard = async (id: string, quantity: number) => {
     const currentCart = await prisma.cart.findMany()
     const data = {
