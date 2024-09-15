@@ -4,3 +4,14 @@
     font-weight: bold;
     margin: 0 0 0 20px;
 }
+
+.indicator {
+    padding: 2px 9px;
+    position: absolute;
+    left: auto;
+    right: -12px;
+    top: -15px;
+    background: var(--orange);
+    color: white;
+    border-radius: 50%;
+}

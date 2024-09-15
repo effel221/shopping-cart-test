@@ -2,8 +2,17 @@
 
 import prisma from "@/app/prisma";
 
+export const productCountTotal = async () => {
+    const totalProducts = await prisma.cartItems.aggregate({
+        _sum: {
+            quantity: true,
+        },
+    })
+    return totalProducts._sum.quantity || 0
+}
+
 export const updateProduct = async (cartId: string, productId: string, quantity: number) => {
-    const productUpdate = await prisma.cartItem.update({
+    const productUpdate = await prisma.cartItems.update({
         where: {
             cartId,
             productId
@@ -17,7 +26,7 @@ export const updateProduct = async (cartId: string, productId: string, quantity:
 }
 
 export const deleteProduct = async (cartId, productId) => {
-    const removedProduct = await prisma.cartItem.findMany({
+    const removedProduct = await prisma.cartItems.findMany({
         where: {
             cartId,
             productId
@@ -30,7 +39,7 @@ export const deleteProduct = async (cartId, productId) => {
 export const addToCard = async (id: string, quantity: number) => {
     const currentCart = await prisma.cart.findMany()
     const data = {
-        cartItem: {
+        cartItems: {
             create: {
                 product: {
                     connect: {id}
@@ -46,7 +55,7 @@ export const addToCard = async (id: string, quantity: number) => {
         })
         return addToCart
     } else {
-        const currentProduct = await prisma.cartItem.findMany({
+        const currentProduct = await prisma.cartItems.findMany({
             where: {
                 cartId: currentCart[0].id,
                 productId: id

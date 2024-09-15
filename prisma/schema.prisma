@@ -29,5 +29,5 @@ model CartItem {
 
 model Cart {
   id       String     @id @default(cuid())
-  cartItem CartItem[]
+  cartItems CartItem[]
 }

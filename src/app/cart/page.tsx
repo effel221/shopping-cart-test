@@ -3,16 +3,8 @@ import prisma from "@/app/prisma";
 
 
 export default async function Cart() {
-    const products = await prisma.cart.findMany({
-        include: {
-            cartItem: {
-                include: {
-                    product: true
-                }
-            }
-        }
-    })
-    console.log(JSON.stringify(products))
+    const products = await prisma.cartItem.findMany()
+
   return (
      <Main>
          <h1>Cart</h1>
