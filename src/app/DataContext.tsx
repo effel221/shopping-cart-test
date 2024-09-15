@@ -4,7 +4,7 @@ import {productCountTotal} from "@/app/serverActions";
 import {ChildrenProps, DataContextType} from "@/app/types";
 
 
-export const DataContext = createContext<DataContextType | null>(null)
+export const DataContext = createContext<DataContextType>({data: null})
 
 const DataProvider = ({ children }:ChildrenProps) => {
     const [indicator, setIndicator] = useState<number>(0)

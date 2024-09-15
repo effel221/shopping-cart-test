@@ -27,5 +27,10 @@ export type DataContextType = {
     data: {
         indicator: number,
         setIndicator: (val:number)=> void
-    }
+    } | null
+}
+
+export type CartProductPropsType = {
+    item: CartProductType,
+    deleteProductClick: (cartId: string, id: string) => void
 }

@@ -2,23 +2,23 @@
 import styles from './CartProduct.module.css'
 import {useCallback, useContext, useEffect, useState} from "react";
 import {updateProduct} from "@/app/serverActions";
-import {DataContextType} from "@/app/types";
+import {CartProductPropsType, DataContextType} from "@/app/types";
 import {DataContext} from "@/app/DataContext";
 
-export default function CartProduct({item, deleteProductClick}) {
+export default function CartProduct({item, deleteProductClick}:CartProductPropsType) {
   const [quantity, setQuantity] = useState(item.quantity)
-  const {data} = useContext<DataContextType | null>(DataContext)
+  const {data} = useContext<DataContextType>(DataContext)
 
   const addQuantity = useCallback(async () => {
           const newQuantity = quantity + 1
           setQuantity(newQuantity)
-          data.setIndicator(data.indicator + 1)
+          data?.setIndicator(data?.indicator + 1)
       },[quantity,setQuantity, data ])
 
   const minusQuantity = useCallback(async () => {
       const newQuantity = quantity - 1
       setQuantity(newQuantity)
-      data.setIndicator(data.indicator - 1)
+      data?.setIndicator(data?.indicator - 1)
   },[quantity,setQuantity, data ])
 
   useEffect(()=>{

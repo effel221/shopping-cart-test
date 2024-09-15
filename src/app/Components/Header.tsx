@@ -9,13 +9,13 @@ import {DataContextType} from "@/app/types";
 
 
 export default function Header() {
-  const {data} = useContext<DataContextType | null>(DataContext)
+  const {data} = useContext<DataContextType>(DataContext)
   return (
      <header>
          <a href="/" className={styles.logo}>Logo</a>
          <Link href="/cart" className="relative ml-auto mr-5 self-center" aria-label={"Go to Cart"}>
              <span className={styles.indicator} aria-label={"Number of products in cart"}>
-                {data.indicator}
+                {data?.indicator}
              </span>
              <CartIcon strokeWidth={2} classes={"h-8 w-8 text-white"}/>
          </Link>

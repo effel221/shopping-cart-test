@@ -1,18 +1,18 @@
 "use client"
 import styles from './Product.module.css'
-import {ProductType} from "@/app/types";
+import {DataContextType, ProductType} from "@/app/types";
 import {addToCard, productCountTotal} from "@/app/serverActions";
 import {useCallback, useContext} from "react";
 import {DataContext} from "@/app/DataContext";
 
 export default function Product(product:ProductType) {
   const {id, name, price, description} = product
-  const {data} = useContext(DataContext)
+  const {data} = useContext<DataContextType>(DataContext)
 
   const addToCardClick = useCallback(async () => {
       await addToCard(id, 1)
       const total = await productCountTotal()
-      data.setIndicator(total)
+      data?.setIndicator(total)
   },[id, data])
 
   return (

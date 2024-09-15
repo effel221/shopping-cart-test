@@ -10,10 +10,10 @@ import styles from './Cart.module.css'
 
 export default function Cart() {
     const [products, setProducts] = useState<CartProductType[] | []>([])
-    const {data} = useContext<DataContextType | null>(DataContext)
+    const {data} = useContext<DataContextType>(DataContext)
 
     useEffect(()=>{
-        cartProducts().then((result: CartProductType[])=>{
+        cartProducts().then((result)=>{
             setProducts(result)
         })
     },[])
@@ -23,7 +23,7 @@ export default function Cart() {
         setProducts(filteredCartProducts)
         await deleteProduct(cartId, id)
         const total = await productCountTotal()
-        data.setIndicator(total)
+        data?.setIndicator(total)
     },[products, setProducts, data])
 
     return (
