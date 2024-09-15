@@ -8,6 +8,7 @@ import styles from './CartProduct.module.css'
 
 export default function Cart() {
     const [products, setProducts] = useState<CartProductType[] | []>([])
+    const [quantity, setQuantity] = useState<number>([])
 
     useEffect(()=>{
         cartProducts().then((result: CartProductType[])=>{
@@ -15,10 +16,14 @@ export default function Cart() {
         })
     },[])
 
-    const deleteProductClick = async (id: string) => {
+    const deleteProductClick = async (cartId: string, id: string) => {
        const filteredCartProducts = products.filter(elem=>elem.id !== id);
        setProducts(filteredCartProducts)
-       await deleteProduct(id)
+       await deleteProduct(cartId, id)
+    }
+
+    const updateQuantity = () => {
+
     }
 
     return (
@@ -34,12 +39,12 @@ export default function Cart() {
                  <h2>{item.product.name}</h2>
                  <p id="descriptionId" className={styles.description}>{item.product.description}</p>
                  <div className="flex w-full">
-                     <span>Amount: {item.quantity}</span>
+                     <span>Amount: <button>-</button> <strong>{item.quantity}</strong> <button>+</button></span>
                      <span className={styles.price}>{item.product.price * item.quantity} € </span>
                  </div>
                  <button
                      aria-label={"Delete product"}
-                     onClick={()=>deleteProductClick(item.id)}
+                     onClick={()=>deleteProductClick(item.cartId, item.id)}
                      className={styles.deleteButton}
                  >x</button>
              </li>)}

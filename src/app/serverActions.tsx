@@ -11,11 +11,11 @@ export const productCountTotal = async () => {
     return totalProducts._sum.quantity || 0
 }
 
-export const updateProduct = async (cartId: string, productId: string, quantity: number) => {
+export const updateProduct = async (cartId: string, id: string, quantity: number) => {
     const productUpdate = await prisma.cartItems.update({
         where: {
             cartId,
-            productId
+            id
         },
         data: {
             quantity
@@ -34,10 +34,11 @@ export const cartProducts = async () => {
     return products
 }
 
-export const deleteProduct = async (id: string) => {
+export const deleteProduct = async (cartId: string, id: string) => {
     const removedProduct = await prisma.cartItems.delete({
         where: {
-            id
+            cartId,
+            id: id
         }
     })
     return removedProduct
@@ -80,7 +81,7 @@ export const addToCard = async (id: string, quantity: number) => {
             return updateToCard
         } else {
            const newQuantity = ++currentProduct[0].quantity
-           await updateProduct(currentCart[0]?.id, id, newQuantity)
+           await updateProduct(currentCart[0]?.id, currentProduct[0].id, newQuantity)
         }
     }
 }
