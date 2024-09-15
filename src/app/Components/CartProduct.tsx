@@ -1,6 +1,6 @@
 "use client"
 import styles from './CartProduct.module.css'
-import {useContext, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {updateProduct} from "@/app/serverActions";
 import {DataContextType} from "@/app/types";
 import {DataContext} from "@/app/DataContext";
@@ -8,22 +8,22 @@ import {DataContext} from "@/app/DataContext";
 export default function CartProduct({item, deleteProductClick}) {
   const [quantity, setQuantity] = useState(item.quantity)
   const {data} = useContext<DataContextType | null>(DataContext)
-  const id = item.id
-  const addQuantity = async () => {
-      const newQuantity = quantity + 1
-      setQuantity(newQuantity)
-      data.setIndicator(data.indicator + 1)
-  }
 
-  const minusQuantity = async () => {
+  const addQuantity = useCallback(async () => {
+          const newQuantity = quantity + 1
+          setQuantity(newQuantity)
+          data.setIndicator(data.indicator + 1)
+      },[quantity,setQuantity, data ])
+
+  const minusQuantity = useCallback(async () => {
       const newQuantity = quantity - 1
       setQuantity(newQuantity)
       data.setIndicator(data.indicator - 1)
-  }
+  },[quantity,setQuantity, data ])
 
   useEffect(()=>{
-      updateProduct(item.cartId, id, quantity)
-  },[quantity])
+      updateProduct(item.cartId, item.id, quantity)
+  },[quantity, item.cartId, item.id])
 
   return (
    <>

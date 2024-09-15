@@ -1,7 +1,7 @@
 "use client"
 import Main from "@/app/Components/Main";
 import {cartProducts, deleteProduct, productCountTotal} from "@/app/serverActions";
-import {useContext, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {CartProductType, DataContextType} from "@/app/types";
 import {DataContext} from "@/app/DataContext";
 import CartProduct from "@/app/Components/CartProduct";
@@ -18,13 +18,13 @@ export default function Cart() {
         })
     },[])
 
-    const deleteProductClick = async (cartId: string, id: string) => {
-       const filteredCartProducts = products.filter(elem=>elem.id !== id);
-       setProducts(filteredCartProducts)
-       await deleteProduct(cartId, id)
-       const total = await productCountTotal()
-       data.setIndicator(total)
-    }
+    const deleteProductClick = useCallback(async (cartId: string, id: string) => {
+        const filteredCartProducts = products.filter(elem=>elem.id !== id);
+        setProducts(filteredCartProducts)
+        await deleteProduct(cartId, id)
+        const total = await productCountTotal()
+        data.setIndicator(total)
+    },[products, setProducts, data])
 
     return (
        <Main>
