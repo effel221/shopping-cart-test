@@ -29,7 +29,7 @@ export default function Cart() {
     return (
        <Main>
            <h1>Cart</h1>
-           <ul aria-label={"Product list in the cart"}>
+           <ul className={styles.cardProductList} aria-label={"Product list in the cart"}>
              {products.length > 0 && products.map((item)=><li
                  key={item.id}
                  aria-label={item.product.name}
@@ -41,7 +41,11 @@ export default function Cart() {
                     deleteProductClick={deleteProductClick}
                  />
              </li>)}
+             {products.length === 0 && <>No products in the cart</>}
            </ul>
+           <div className="flex">
+               <span className="ml-auto mr-4">Total price: 0</span>
+           </div>
        </Main>
     );
 }

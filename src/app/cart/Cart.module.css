@@ -1,3 +1,9 @@
+.cardProductList {
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--ligth-gray);
+    margin-bottom: 5px;
+}
+
 .cardProduct h2 {
     font-size: 1.1rem;
     font-weight: bold;
@@ -6,7 +12,7 @@
 
 .cardProduct {
     position: relative;
-    width: 97%;
+    width: 99%;
     border: 1px solid var(--ligth-gray);
     margin: 5px;
     padding: 5px;
