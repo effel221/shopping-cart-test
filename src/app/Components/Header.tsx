@@ -11,7 +11,9 @@ export default async function Header() {
      <header>
          <a href="/" className={styles.logo}>Logo</a>
          <Link href="/cart" className="relative ml-auto mr-5 self-center" aria-label={"Go to Cart"}>
-             <span className={styles.indicator}>{await productCountTotal()}</span>
+             <span className={styles.indicator} aria-label={"Number of products in cart"}>
+                 {await productCountTotal()}
+             </span>
              <CartIcon strokeWidth={2} classes={"h-8 w-8 text-white"}/>
          </Link>
      </header>

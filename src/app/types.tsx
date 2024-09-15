@@ -15,3 +15,9 @@ export type CartIconProps = {
     classes: string,
     strokeWidth: number
 }
+
+export type CartProductType = {
+    id: string,
+    quantity: number
+    product: ProductType
+}
