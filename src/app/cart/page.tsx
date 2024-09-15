@@ -1,14 +1,16 @@
 "use client"
 import Main from "@/app/Components/Main";
-import {cartProducts, deleteProduct} from "@/app/serverActions";
-import {useEffect, useState} from "react";
-import {CartProductType} from "@/app/types";
-import styles from './CartProduct.module.css'
+import {cartProducts, deleteProduct, productCountTotal} from "@/app/serverActions";
+import {useContext, useEffect, useState} from "react";
+import {CartProductType, DataContextType} from "@/app/types";
+import {DataContext} from "@/app/DataContext";
+import CartProduct from "@/app/Components/CartProduct";
+import styles from './Cart.module.css'
 
 
 export default function Cart() {
     const [products, setProducts] = useState<CartProductType[] | []>([])
-    const [quantity, setQuantity] = useState<number>([])
+    const {data} = useContext<DataContextType | null>(DataContext)
 
     useEffect(()=>{
         cartProducts().then((result: CartProductType[])=>{
@@ -20,10 +22,8 @@ export default function Cart() {
        const filteredCartProducts = products.filter(elem=>elem.id !== id);
        setProducts(filteredCartProducts)
        await deleteProduct(cartId, id)
-    }
-
-    const updateQuantity = () => {
-
+       const total = await productCountTotal()
+       data.setIndicator(total)
     }
 
     return (
@@ -36,17 +36,10 @@ export default function Cart() {
                  aria-describedby="descriptionId"
                  className={styles.cardProduct}
              >
-                 <h2>{item.product.name}</h2>
-                 <p id="descriptionId" className={styles.description}>{item.product.description}</p>
-                 <div className="flex w-full">
-                     <span>Amount: <button>-</button> <strong>{item.quantity}</strong> <button>+</button></span>
-                     <span className={styles.price}>{item.product.price * item.quantity} € </span>
-                 </div>
-                 <button
-                     aria-label={"Delete product"}
-                     onClick={()=>deleteProductClick(item.cartId, item.id)}
-                     className={styles.deleteButton}
-                 >x</button>
+                 <CartProduct
+                    item={item}
+                    deleteProductClick={deleteProductClick}
+                 />
              </li>)}
            </ul>
        </Main>

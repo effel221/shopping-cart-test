@@ -22,3 +22,10 @@ export type CartProductType = {
     quantity: number,
     product: ProductType
 }
+
+export type DataContextType = {
+    data: {
+        indicator: number,
+        setIndicator: (val:number)=> void
+    }
+}

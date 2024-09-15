@@ -1,21 +1,3 @@
-.cardProduct h2 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    width: 90%;
-}
-
-.cardProduct {
-    position: relative;
-    width: 97%;
-    border: 1px solid var(--ligth-gray);
-    margin: 5px;
-    padding: 5px;
-}
-
-.cardProduct:hover {
-    border: 1px solid var(--dark);
-}
-
 .description {
     width: 100%;
     margin: 0 0 10px;
