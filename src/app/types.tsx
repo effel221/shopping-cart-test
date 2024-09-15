@@ -20,7 +20,8 @@ export type CartProductType = {
     id: string,
     cartId: string,
     quantity: number,
-    product: ProductType
+    product: ProductType,
+    productId: string
 }
 
 export type DataContextType = {

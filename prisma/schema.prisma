@@ -24,7 +24,7 @@ model CartItems {
   quantity  Int     @default(0)
   productId String  @unique
   Cart      Cart?   @relation(fields: [cartId], references: [id])
-  cartId    String?
+  cartId    String
 }
 
 model Cart {

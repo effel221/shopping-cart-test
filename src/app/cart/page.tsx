@@ -9,7 +9,7 @@ import styles from './Cart.module.css'
 
 
 export default function Cart() {
-    const [products, setProducts] = useState<CartProductType[] | []>([])
+    const [products, setProducts] = useState<CartProductType[]>([])
     const {data} = useContext<DataContextType>(DataContext)
 
     useEffect(()=>{

@@ -37,7 +37,7 @@ export default function CartProduct({item, deleteProductClick}:CartProductPropsT
        </div>
        <button
            aria-label={"Delete product"}
-           onClick={()=>deleteProductClick(item.cartId, item.id)}
+           onClick={()=>deleteProductClick(item?.cartId, item.id)}
            className={styles.deleteButton}
        >x</button></>}
    </>
