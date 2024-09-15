@@ -33,5 +33,6 @@ export type DataContextType = {
 
 export type CartProductPropsType = {
     item: CartProductType,
-    deleteProductClick: (cartId: string, id: string) => void
+    deleteProductClick: (cartId: string, id: string) => void,
+    setTotalPrice: (val:number) => void
 }

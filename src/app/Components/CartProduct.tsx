@@ -5,20 +5,22 @@ import {updateProduct} from "@/app/serverActions";
 import {CartProductPropsType, DataContextType} from "@/app/types";
 import {DataContext} from "@/app/DataContext";
 
-export default function CartProduct({item, deleteProductClick}:CartProductPropsType) {
+export default function CartProduct({item, deleteProductClick, setTotalPrice}:CartProductPropsType) {
   const [quantity, setQuantity] = useState(item.quantity)
   const {data} = useContext<DataContextType>(DataContext)
 
   const addQuantity = useCallback(async () => {
-          const newQuantity = quantity + 1
-          setQuantity(newQuantity)
-          data?.setIndicator(data?.indicator + 1)
-      },[quantity,setQuantity, data ])
+     const newQuantity = quantity + 1
+     setQuantity(newQuantity)
+     data?.setIndicator(data?.indicator + 1)
+     setTotalPrice((current)=>current + item.product.price)
+  },[quantity,setQuantity, data ])
 
   const minusQuantity = useCallback(async () => {
       const newQuantity = quantity - 1
       setQuantity(newQuantity)
       data?.setIndicator(data?.indicator - 1)
+      setTotalPrice((current)=>current - item.product.price)
   },[quantity,setQuantity, data ])
 
   useEffect(()=>{
@@ -37,7 +39,7 @@ export default function CartProduct({item, deleteProductClick}:CartProductPropsT
        </div>
        <button
            aria-label={"Delete product"}
-           onClick={()=>deleteProductClick(item?.cartId, item.id)}
+           onClick={()=>deleteProductClick(item?.cartId, item.id, quantity)}
            className={styles.deleteButton}
        >x</button></>}
    </>
