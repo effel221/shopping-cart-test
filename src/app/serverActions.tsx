@@ -34,10 +34,10 @@ export const cartProducts = async () => {
     return products
 }
 
-export const deleteProduct = async (productId: string) => {
+export const deleteProduct = async (id: string) => {
     const removedProduct = await prisma.cartItems.delete({
         where: {
-            productId
+            id
         }
     })
     return removedProduct

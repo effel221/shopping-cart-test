@@ -1,0 +1,38 @@
+.cardProduct h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 90%;
+}
+
+.cardProduct {
+    position: relative;
+    width: 97%;
+    border: 1px solid var(--ligth-gray);
+    margin: 5px;
+    padding: 5px;
+}
+
+.cardProduct:hover {
+    border: 1px solid var(--dark);
+}
+
+.description {
+    width: 100%;
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+    padding: 2px 3px;
+}
+
+.deleteButton {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    padding: 3px 11px;
+}
+
+.price {
+    color: var(--orange-dark);
+    margin-left: auto;
+    margin-right: 10px;
+    font-weight: bold;
+}
