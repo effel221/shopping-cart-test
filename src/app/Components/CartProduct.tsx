@@ -13,19 +13,19 @@ export default function CartProduct({item, deleteProductClick, setTotalPrice}:Ca
      const newQuantity = quantity + 1
      setQuantity(newQuantity)
      data?.setIndicator(data?.indicator + 1)
-     setTotalPrice((current)=>current + item.product.price)
-  },[quantity,setQuantity, data ])
+     setTotalPrice((current: number)=>current + item.product.price)
+  },[quantity,setQuantity, data, item.product.price, setTotalPrice ])
 
   const minusQuantity = useCallback(async () => {
       const newQuantity = quantity - 1
       setQuantity(newQuantity)
       data?.setIndicator(data?.indicator - 1)
-      setTotalPrice((current)=>current - item.product.price)
-  },[quantity,setQuantity, data ])
+      setTotalPrice((current: number)=>current - item.product.price)
+  },[quantity,setQuantity, data, item.product.price, setTotalPrice ])
 
   useEffect(()=>{
       updateProduct(item.cartId, item.id, quantity)
-  },[quantity, item.cartId, item.id])
+  },[quantity, item.cartId, item.id, ])
 
   return (
    <>
