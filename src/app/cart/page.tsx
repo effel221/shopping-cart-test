@@ -28,7 +28,7 @@ export default function Cart() {
         await deleteProduct(cartId, id)
         const total = await productCountTotal()
         data?.setIndicator(total)
-        setTotalPrice((current)=>Number(current - (item?.product?.price || 0) * quantity ))
+        setTotalPrice((current)=>Math.abs(current - (item?.product?.price || 0) * quantity ))
     },[products, setProducts, data])
 
     return (
